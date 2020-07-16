@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const flash = require('connect-flash')
 const session = require('express-session')
+const cookieParser = require('cookie-parser')
 
 const app = express()
 
@@ -17,10 +18,12 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreat
 
 app.use(express.json())
 
+app.use(cookieParser())
+
 app.use(session({
     secret: config.session.secret,
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: false
 }))
 
 app.use(passport.initialize())
@@ -35,6 +38,6 @@ app.use(flash())
 })*/
 
 app.use('/', require('./routes/index'))
-app.use('/users', require('./routes/users'))
+app.use('/api', require('./routes/users'))
 
 app.listen(config.port, () => console.log(`Listening on port ${config.port}`))
