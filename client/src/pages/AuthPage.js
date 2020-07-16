@@ -22,7 +22,7 @@ const AuthPage = () => {
     const loginHandler = async () => {
         const { data } = await Axios.post('/api/auth/login', { ...authForm })
         console.log('вошел ', data)
-        auth.login(data.token, data.userId, data.nickname)
+        auth.login(data.user/*, data.userId, data.nickname*/)
     }
 
     const pressEnter = (e) => {

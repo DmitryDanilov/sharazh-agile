@@ -15,7 +15,7 @@ export const NavbarPanel = () => {
     return (
         <div>
             <Link to="/account" className="nav-link">Аккаунт</Link>
-            <Link to="/chat" className="nav-link">Чат</Link>
+            <Link to="/dashboard" className="nav-link">Dashboard</Link>
             <Link to="/" className="nav-link" onClick={logoutHandler}>Выйти</Link>
         </div>
     )

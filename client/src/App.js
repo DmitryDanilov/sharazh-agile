@@ -7,15 +7,15 @@ import { NavbarPanel } from './components/NavbarPanel'
 
 function App() {
 
-  const { token, login, logout, userId } = useAuth()
+  const { user, login, logout } = useAuth()
 
-  const isAuthenticated = !!token
+  const isAuthenticated = !!user
 
   const routes = useRoutes(isAuthenticated)
 
   return (
     <AuthContext.Provider value={{
-      token, login, logout, userId, isAuthenticated
+      user, login, logout, isAuthenticated
     }}>
       <BrowserRouter>
         {isAuthenticated && <NavbarPanel />}
