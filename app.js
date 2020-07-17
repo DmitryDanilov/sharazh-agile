@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const flash = require('connect-flash')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
 const cookieParser = require('cookie-parser')
 
 const app = express()
@@ -18,12 +19,16 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreat
 
 app.use(express.json())
 
-app.use(cookieParser())
+app.use(cookieParser(config.session.secret))
 
 app.use(session({
     secret: config.session.secret,
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        expires: false
+    },
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
 }))
 
 app.use(passport.initialize())

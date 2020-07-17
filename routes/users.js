@@ -29,11 +29,11 @@ router.post('/auth/register', (req, res) => {
 
 router.post('/auth/login', async (req, res) => {
     if (!req.body.login) {
-        res.json({ success: false, message: "Login was not given" })
+        return res.json({ success: false, message: "Login was not given" })
     }
 
     if (!req.body.password) {
-        res.json({ success: false, message: "Password was not given" })
+        return res.json({ success: false, message: "Password was not given" })
     }
 
     try {
@@ -43,9 +43,11 @@ router.post('/auth/login', async (req, res) => {
             throw new Error(error)
         }
 
-        res.json({
+        req.logIn(user, () => res.json({
             success: true, message: "Authentication successfull", user
-        })
+        }))
+
+
     } catch (err) {
         res.status(500).json({
             success: false,

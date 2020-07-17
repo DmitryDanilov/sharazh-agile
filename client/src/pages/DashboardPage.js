@@ -3,7 +3,7 @@ import Axios from 'axios'
 
 const DashboardPage = () => {
     const loadData = async () => {
-        const { data } = await Axios.get('/dashboard')
+        const { data } = await Axios.get('/dashboard', { withCredentials: true })
         console.log(data)
     }
 

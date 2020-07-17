@@ -4,6 +4,7 @@ import { useAuth } from './hooks/auth.hook'
 import { AuthContext } from './context/AuthContext'
 import { useRoutes } from './routes'
 import { NavbarPanel } from './components/NavbarPanel'
+import { FooterPanel } from './components/FooterPanel'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         {isAuthenticated && <NavbarPanel />}
         {routes}
       </BrowserRouter>
+      <FooterPanel />
     </AuthContext.Provider>
   )
 }
