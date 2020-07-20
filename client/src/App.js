@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { useAuth } from './hooks/auth.hook'
 import { AuthContext } from './context/AuthContext'
 import { useRoutes } from './routes'
 import { NavbarPanel } from './components/NavbarPanel'

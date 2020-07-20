@@ -5,7 +5,8 @@ import { AuthContext } from '../context/AuthContext'
 import '../css/AuthPage.css'
 
 const AuthPage = () => {
-    const auth = useContext(AuthContext)
+    //const auth = useContext(AuthContext)
+    const { login } = useContext(AuthContext)
 
     const [authForm, setAuthForm] = useState({ login: '', password: '' })
 
@@ -20,7 +21,8 @@ const AuthPage = () => {
 
     const loginHandler = async () => {
         const { data } = await Axios.post('/api/auth/login', { ...authForm })
-        auth.login(data.user)
+        //auth.login(data.user)
+        await login()
     }
 
     const pressEnter = (e) => {

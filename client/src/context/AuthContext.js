@@ -15,14 +15,14 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
 
     const check = async () => {
-        const user = await Axios.get('/auth', { withCredentials: true })
+        const { data } = await Axios.get('/auth', { withCredentials: true })
 
-        setUser(user)
+        setUser(data)
     }
 
     useEffect(() => {
         check()
-            .then(() => {
+            .finally(() => {
                 setLoading(false)
             })
     }, [])
@@ -31,8 +31,8 @@ export const AuthProvider = ({ children }) => {
         return null
     }
 
-    const login = async () => {
-        const user = await Axios.get('/auth', { withCredentials: true })
+    const login = async (data) => {
+        const user = await await Axios.post('/api/auth/login', data)
         setUser(user)
     }
 
