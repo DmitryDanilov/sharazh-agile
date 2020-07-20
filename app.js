@@ -14,7 +14,7 @@ require('./config/passport')(passport)
 const db = config.mongoose.uri
 
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
-    .then(console.log('Mongo connected'))
+    .then(() => console.log('Mongo connected'))
     .catch(err => console.log(err))
 
 app.use(express.json())
@@ -26,7 +26,8 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     cookie: {
-        expires: false
+        expires: false,
+        maxAge: 1000 * 60 * 60
     },
     store: new MongoStore({ mongooseConnection: mongoose.connection })
 }))

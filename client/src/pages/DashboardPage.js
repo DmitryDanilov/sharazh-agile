@@ -8,7 +8,7 @@ const DashboardPage = () => {
     const [data, setData] = useState(null)
 
     const fetched = useCallback(async () => {
-        const { data } = await Axios.get('/dashboard', { withCredentials: true })
+        const { data } = await Axios.get('/api/task/getTasks', { withCredentials: true })
 
         setData(data)
     }, [])
@@ -19,12 +19,33 @@ const DashboardPage = () => {
 
     return (
         <div className='page-dashboard'>
-            {
-
-                data && data.map((el, index) => {
-                    return <Task key={index} data={el} />
-                })
-            }
+            <div className='column'>
+                {
+                    data && data.map((el, index) => {
+                        if (el.status === 'new') {
+                            return <Task key={index} data={el} />
+                        }
+                    })
+                }
+            </div>
+            <div className='column'>
+                {
+                    data && data.map((el, index) => {
+                        if (el.status === 'work') {
+                            return <Task key={index} data={el} />
+                        }
+                    })
+                }
+            </div>
+            <div className='column'>
+                {
+                    data && data.map((el, index) => {
+                        if (el.status === 'complete') {
+                            return <Task key={index} data={el} />
+                        }
+                    })
+                }
+            </div>
         </div>
     )
 }

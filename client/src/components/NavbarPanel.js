@@ -6,11 +6,11 @@ import '../css/NavbarPanel.css'
 
 export const NavbarPanel = () => {
     const history = useHistory()
-    const auth = useContext(AuthContext)
+    const { logout } = useContext(AuthContext)
 
-    const logoutHandler = event => {
+    const logoutHandler = async event => {
         event.preventDefault()
-        auth.logout()
+        await logout()
         history.push('/')
     }
 

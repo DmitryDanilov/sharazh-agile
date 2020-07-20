@@ -4,19 +4,23 @@ import AuthPage from './pages/AuthPage'
 import DashboardPage from './pages/DashboardPage'
 import AccountPage from './pages/AccountPage'
 import CreateTaskPage from './pages/CreateTaskPage'
+import DetailPage from './pages/DetailPage'
 
 export const useRoutes = (isAuthenticated) => {
     if (isAuthenticated) {
         return (
             <Switch>
-                <Route path='/createTask' exact>
+                <Route path='/createTask'>
                     <CreateTaskPage />
                 </Route>
-                <Route path='/account' exact>
+                <Route path='/account'>
                     <AccountPage />
                 </Route>
-                <Route path='/dashboard' exact>
+                <Route path='/dashboard'>
                     <DashboardPage />
+                </Route>
+                <Route path='/detail/:number'>
+                    <DetailPage />
                 </Route>
                 <Redirect to="/dashboard" />
             </Switch>

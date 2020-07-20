@@ -57,9 +57,11 @@ router.post('/auth/login', async (req, res) => {
 })
 
 router.get('/auth/logout', (req, res) => {
-    req.logout()
-    req.flash('success_msg', 'Вышел')
-    res.redirect('/api/auth/login')
+    req.logout(() => {
+        res.json({ success: true, message: "logout successfull" })
+    })
+    //req.flash('success_msg', 'Вышел')
+    //res.redirect('/api/auth/login')
 })
 
 module.exports = router

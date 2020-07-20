@@ -1,3 +1,7 @@
-.page-dashboard {
-    
+.page-dashboard {}
+
+.column {
+    width: 33%;
+    background-color: #ffdede;
+    display: inline-block;
 }

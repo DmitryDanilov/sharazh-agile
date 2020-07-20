@@ -6,6 +6,8 @@ import { Redirect } from 'react-router-dom'
 const CreateTaskPage = () => {
     const [taskForm, setTaskForm] = useState({ title: '', description: '' })
 
+    const [stasus, setStatus] = useState('non')
+
     const changeHandler = (e) => {
         setTaskForm({ ...taskForm, [e.target.name]: e.target.value })
     }
@@ -13,9 +15,12 @@ const CreateTaskPage = () => {
     const pressAccess = async () => {
         console.log('taskForm', taskForm)
         const { data } = await Axios.post('/api/task/createTask', taskForm, { withCredentials: true })
-        if (data.status === 'success') {
-            return <Redirect to='/dashboard' />
-        }
+
+        setStatus(data.status)
+    }
+
+    if (stasus === 'success') {
+        return <Redirect to='/dashboard' />
     }
 
     return (
