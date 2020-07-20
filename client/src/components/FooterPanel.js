@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/FooterPanel.css'
 
 export const FooterPanel = () => {
 

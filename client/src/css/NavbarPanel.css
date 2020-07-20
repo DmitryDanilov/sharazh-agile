@@ -1,0 +1,33 @@
+.logo-img {
+  height: 61px;
+}
+
+.nav-wrapper {
+  display: flex;
+  height: 61px;
+  background-color: #271a63;
+}
+
+#menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  margin-left: auto;
+}
+
+#menu>li:hover {
+  background-color: #6145e0;
+  transition: all 0.5s;
+}
+
+#menu>li {
+  width: 100px;
+  text-align: center;
+  line-height: 55px;
+}
+
+#menu>li>a {
+  text-decoration: none;
+  color: white;
+}

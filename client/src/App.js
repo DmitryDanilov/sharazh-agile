@@ -22,7 +22,6 @@ function App() {
         {isAuthenticated && <NavbarPanel />}
         {routes}
       </BrowserRouter>
-      <FooterPanel />
     </AuthContext.Provider>
   )
 }

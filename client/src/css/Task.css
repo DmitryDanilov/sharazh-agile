@@ -1,0 +1,23 @@
+.task-container {
+    width: 150px;
+    border-radius: 10px;
+    background-color: #1b8e21;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 1px white, 11px 15px 11em #f3d0d0;
+    color: white;
+}
+
+.task-number {
+    margin: 10px 10px;
+    text-align: center;
+}
+
+.task-title {
+    margin: 10px 10px;
+    text-align: center;
+}
+
+.task-date {
+    margin: 10px 10px;
+    text-align: center;
+}

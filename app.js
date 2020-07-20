@@ -11,7 +11,7 @@ const app = express()
 
 require('./config/passport')(passport)
 
-const db = require('./config/db').url
+const db = config.mongoose.uri
 
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(console.log('Mongo connected'))
@@ -36,13 +36,8 @@ app.use(passport.session())
 
 app.use(flash())
 
-/*app.use((req, res, next) => {
-    res.locals.success_msg = req.flash('success_msg')
-    res.locals.error_msg = req.flash('error_msg')
-    res.locals.error = req.flash('error')
-})*/
-
 app.use('/', require('./routes/index'))
 app.use('/api', require('./routes/users'))
+app.use('/api', require('./routes/tasks'))
 
 app.listen(config.port, () => console.log(`Listening on port ${config.port}`))

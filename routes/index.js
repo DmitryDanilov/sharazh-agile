@@ -7,7 +7,13 @@ router.get('/', (req, res) => {
 })
 
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
-    res.send('Dashboard')
+    const testArr = []
+    for (let i=0; i< 10; i++) {
+        testArr[i] = {number: i+1, title: `Задача ${i+1}`, date: new Date()}
+    }
+    
+
+    res.send(testArr)
 })
 
 module.exports = router
