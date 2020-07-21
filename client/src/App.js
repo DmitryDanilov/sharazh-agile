@@ -5,9 +5,6 @@ import { useRoutes } from './routes'
 import { NavbarPanel } from './components/NavbarPanel'
 
 function App() {
-
-  //const { user, login, logout } = useAuth()
-
   const { user } = useContext(AuthContext)
 
   const isAuthenticated = !!user

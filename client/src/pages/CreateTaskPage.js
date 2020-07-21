@@ -13,7 +13,6 @@ const CreateTaskPage = () => {
     }
 
     const pressAccess = async () => {
-        console.log('taskForm', taskForm)
         const { data } = await Axios.post('/api/task/createTask', taskForm, { withCredentials: true })
 
         setStatus(data.status)

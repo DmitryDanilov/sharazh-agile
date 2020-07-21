@@ -8,10 +8,17 @@ const DetailPage = () => {
     const taskNumber = useParams().number
 
     const fetched = useCallback(async () => {
-        const { data } = await Axios.get(`/api/task/getTask/${taskNumber}`, { withCredentials: true })
+        if (taskNumber) {
+            const { data } = await Axios.get(`/api/task/getTask/${taskNumber}`, { withCredentials: true })
+            setTask(data)
+        }
+    }, [taskNumber])
 
-        setTask(data)
-    }, [])
+    const changeStatus = async () => {
+        console.log('taskNumber', taskNumber)
+        await Axios.post('/api/task/changeStatus/', { taskNumber }, { withCredentials: true })
+        fetched()
+    }
 
     useEffect(() => {
         fetched()
@@ -23,6 +30,9 @@ const DetailPage = () => {
             <div>Заголовок {task && task.title}</div>
             <div>Описание {task && task.description}</div>
             <div>Дата {task && task.date}</div>
+            <button
+                onClick={changeStatus}
+            >{task ? (task.status === 0 ? 'взять в работку' : task.status === 1 ? 'сделяль' : task.status === 2 ? 'в архив' : 'уже в архиве, куда') : 'empty'}</button>
         </div>
     )
 }

@@ -4,7 +4,6 @@ const { ensureAuthenticated } = require('../middleware/auth')
 const Task = require('../models/Task')
 
 router.post('/task/createTask', ensureAuthenticated, async (req, res) => {
-    console.log(req.body)
 
     const { title, description } = req.body
     if (title && description) {
@@ -22,26 +21,46 @@ router.post('/task/createTask', ensureAuthenticated, async (req, res) => {
                 title,
                 description,
                 date: new Date(),
-                status: 'new'
+                status: 0
             })
 
         await task.save()
 
-        return res.send({ status: 'success', msg: 'задача создана' })
+        return res.json({ status: 'success', msg: 'задача создана' })
     }
-    return res.send({ status: 'failed', msg: 'нет имени или описания' })
+    return res.json({ status: 'failed', msg: 'нет имени или описания' })
 })
 
 router.get('/task/getTasks', ensureAuthenticated, async (req, res) => {
     const tasks = await Task.find()
 
-    res.send(tasks)
+    res.json(tasks)
 })
 
 router.get('/task/getTask/:number', ensureAuthenticated, async (req, res) => {
     const task = await Task.findOne({ number: req.params.number })
-    console.log(task)
     res.json(task)
+})
+
+router.post('/task/changeStatus', ensureAuthenticated, async (req, res) => {
+
+    const { taskNumber: number } = req.body
+
+    const task = await Task.findOne({ number })
+
+    if (task) {
+        const prevStatus = task.status
+
+        if (prevStatus < 3) {
+            await Task.updateOne(
+                { number },
+                { status: prevStatus + 1 }
+            )
+
+            return res.json({ status: 'success', msg: 'задача обновлена' })
+        }
+    }
+    return res.json({ status: 'failed', msg: 'что то не то' })
 })
 
 module.exports = router

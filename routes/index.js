@@ -5,8 +5,4 @@ router.get('/', (req, res) => {
     res.send('Welcome')
 })
 
-router.get('/auth', (req, res) => {
-    res.send(req.user)
-})
-
 module.exports = router

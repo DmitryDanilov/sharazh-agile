@@ -3,14 +3,6 @@ const router = express.Router()
 
 const User = require('../models/User')
 
-router.get('/auth/login', (req, res) => {
-    res.send('Login')
-})
-
-router.get('/auth/register', (req, res) => {
-    res.send('Register')
-})
-
 router.post('/auth/register', (req, res) => {
     const newUser = new User({ login: req.body.login })
 
@@ -38,7 +30,7 @@ router.post('/auth/login', async (req, res) => {
 
     try {
         const { user, error } = await User.authenticate()(req.body.login, req.body.password)
-
+        
         if (error) {
             throw new Error(error)
         }
@@ -49,7 +41,7 @@ router.post('/auth/login', async (req, res) => {
 
 
     } catch (err) {
-        res.status(500).json({
+        res.json({
             success: false,
             err
         })
@@ -59,8 +51,10 @@ router.post('/auth/login', async (req, res) => {
 router.get('/auth/logout', (req, res) => {
     req.logOut()
     res.json({ success: true, message: "logout successfull" })
-    //req.flash('success_msg', 'Вышел')
-    //res.redirect('/api/auth/login')
+})
+
+router.get('/auth/checkUser', (req, res) => {
+    res.json(req.user)
 })
 
 module.exports = router

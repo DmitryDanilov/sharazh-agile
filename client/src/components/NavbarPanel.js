@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 import Background from '../logo.svg'
 import '../css/NavbarPanel.css'
@@ -7,6 +7,9 @@ import '../css/NavbarPanel.css'
 export const NavbarPanel = () => {
     const history = useHistory()
     const { logout } = useContext(AuthContext)
+    const location = useLocation()
+
+    console.log(location.pathname)
 
     const logoutHandler = async event => {
         event.preventDefault()
@@ -19,10 +22,10 @@ export const NavbarPanel = () => {
             <div className="nav-wrapper">
                 <img className="logo-img" src={Background} alt="logo"></img>
                 <ul id="menu">
-                    <li><Link to="/createTask" className="nav-link">Создать</Link></li>
-                    <li><Link to="/account" className="nav-link">Аккаунт</Link></li>
-                    <li><Link to="/dashboard" className="nav-link">Dashboard</Link></li>
-                    <li><Link to="/" className="nav-link" onClick={logoutHandler}>Выйти</Link></li>
+                    <li className={location.pathname === '/createTask' ? "nav-link active" : "nav-link"}><Link to="/createTask">Создать</Link></li>
+                    <li className={location.pathname === '/account' ? "nav-link active" : "nav-link"}><Link to="/account">Аккаунт</Link></li>
+                    <li className={location.pathname === '/dashboard' ? "nav-link active" : "nav-link"}><Link to="/dashboard">Dashboard</Link></li>
+                    <li className={location.pathname === '/' ? "nav-link active" : "nav-link"}><Link to="/" onClick={logoutHandler}>Выйти</Link></li>
                 </ul>
             </div>
         </nav>

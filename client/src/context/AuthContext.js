@@ -1,8 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react'
 import Axios from 'axios'
 
-//function loop() { }
-
 export const AuthContext = createContext({
     login: null,
     logout: null,
@@ -14,14 +12,14 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
 
-    const check = async () => {
-        const { data } = await Axios.get('/auth', { withCredentials: true })
+    const checkUser = async () => {
+        const { data } = await Axios.get('/api/auth/checkUser', { withCredentials: true })
 
         setUser(data)
     }
 
     useEffect(() => {
-        check()
+        checkUser()
             .finally(() => {
                 setLoading(false)
             })
@@ -31,9 +29,14 @@ export const AuthProvider = ({ children }) => {
         return null
     }
 
-    const login = async (data) => {
-        const user = await await Axios.post('/api/auth/login', data)
-        setUser(user)
+    const login = async (authForm) => {
+        try {
+            const { data } = await Axios.post('/api/auth/login', authForm)
+            setUser(data.user)
+        }
+        catch (err) {
+            console.log('Ошибка авторизации', err)
+        }
     }
 
     const logout = async () => {

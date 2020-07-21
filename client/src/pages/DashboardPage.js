@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react'
 import Axios from 'axios'
 import Task from '../components/Task'
 import '../css/DashboardPage.css'
+import { ColumnDashboard } from '../components/ColumnDashboard'
+import { ToolMenu } from '../components/ToolMenu'
 
 const DashboardPage = () => {
 
@@ -18,33 +20,17 @@ const DashboardPage = () => {
     }, [fetched])
 
     return (
-        <div className='page-dashboard'>
-            <div className='column'>
-                {
-                    data && data.map((el, index) => {
-                        if (el.status === 'new') {
-                            return <Task key={index} data={el} />
-                        }
-                    })
-                }
-            </div>
-            <div className='column'>
-                {
-                    data && data.map((el, index) => {
-                        if (el.status === 'work') {
-                            return <Task key={index} data={el} />
-                        }
-                    })
-                }
-            </div>
-            <div className='column'>
-                {
-                    data && data.map((el, index) => {
-                        if (el.status === 'complete') {
-                            return <Task key={index} data={el} />
-                        }
-                    })
-                }
+        <div>
+            <div className='page-dashboard'>
+                <ColumnDashboard data={data} status={0} />
+                <div className='sep'></div>
+                <ColumnDashboard data={data} status={1} />
+                <div className='sep'></div>
+                <ColumnDashboard data={data} status={2} />
+                <div className='sep'></div>
+                <ColumnDashboard data={data} status={3} />
+                <div className='sep'></div>
+                <ToolMenu />
             </div>
         </div>
     )

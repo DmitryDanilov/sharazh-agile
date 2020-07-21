@@ -1,7 +1,18 @@
-.page-dashboard {}
+.page-dashboard {
+    display: flex;
+}
 
-.column {
-    width: 33%;
-    background-color: #ffdede;
+.dashboard-column {
+    /*width: 18%;*/
+    /*background-color: #ffdede;*/
     display: inline-block;
+    text-align: center;
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 20px 0px;
+}
+
+.sep {
+    width: 2px;
+    background-color: #c1c1c1;
 }

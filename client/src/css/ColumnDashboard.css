@@ -1,0 +1,9 @@
+.column {
+    width: 18%;
+    /*background-color: #ffdede;*/
+    display: inline-block;
+}
+
+.title-column {
+    text-align: center;
+}
