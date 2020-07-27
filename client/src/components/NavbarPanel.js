@@ -9,8 +9,6 @@ export const NavbarPanel = () => {
     const { logout } = useContext(AuthContext)
     const location = useLocation()
 
-    console.log(location.pathname)
-
     const logoutHandler = async event => {
         event.preventDefault()
         await logout()

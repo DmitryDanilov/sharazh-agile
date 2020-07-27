@@ -5,7 +5,9 @@ const Task = new Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
     date: { type: Date, required: true },
-    status: { type: Number, required: true }
+    status: { type: Number, required: true },
+    author: { type: String, required: true },
+    executor: { type: String, required: true }
 })
 
 module.exports = model('Task', Task)

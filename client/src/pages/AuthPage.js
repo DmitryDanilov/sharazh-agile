@@ -20,8 +20,6 @@ const AuthPage = () => {
 
     const loginHandler = async () => {
         try {
-            //const { data } = await Axios.post('/api/auth/login', { ...authForm })
-
             await login(authForm)
         }
         catch (err) {
