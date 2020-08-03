@@ -35,37 +35,43 @@ const AuthPage = () => {
 
     return (
         <div className='auth-page'>
+         <div className='auth-page-layout'>
             <div className='auth-form'>
-                <div className='auth-title'>Авторизация</div>
+                <div className='auth-title'>Вход в <span className='text-colored'>Agile</span></div>
                 <div className='auth-input'>
                     <input
                         id="login"
                         name="login"
                         value={authForm.login}
                         onChange={changeHandler}
-                        placeholder={'Введите логин'}
+                        placeholder={'Логин'}
                     />
                 </div>
                 <div className='auth-input'>
                     <input
                         id="password"
                         name="password"
+                        type="password"
                         value={authForm.password}
                         onChange={changeHandler}
-                        placeholder={'Введите пароль'}
+                        placeholder={'Пароль'}
                         onKeyUp={pressEnter}
                     />
                 </div>
                 <div className='auth-input'>
-                    <button
+                 <div className='auth-button'> <button
                         onClick={loginHandler}
-                    >Войти</button>
-                    <button
+                    >Агиле!</button></div>  
+                    <div className='auth-button clear-button'><button
                         onClick={registerHandler}
-                    >Регистрация</button>
+                    ><span className='text-colored'>Регистрация</span></button>
+                </div>              
                 </div>
+                </div>
+                <div className='auth-page-footer-text'><span class="text-colored">"Шараж-Монтаж" © 2020 </span><span> / Никакие права не защищены, буква "c" в кружке ничего не значит, это обман</span></div>
             </div>
         </div>
+
     )
 }
 

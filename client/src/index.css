@@ -5,8 +5,8 @@
   font-style: normal;
   font-weight: 500;
   src: local('Montserrat Medium'), local('Montserrat-Medium'),
-       url('/fonts/montserrat-v14-cyrillic-ext-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/fonts/montserrat-v14-cyrillic-ext-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       url('fonts/montserrat-v14-cyrillic-ext-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('fonts/montserrat-v14-cyrillic-ext-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* montserrat-700 - cyrillic-ext */
 @font-face {
@@ -14,8 +14,8 @@
   font-style: normal;
   font-weight: 700;
   src: local('Montserrat Bold'), local('Montserrat-Bold'),
-       url('/fonts/montserrat-v14-cyrillic-ext-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/fonts/montserrat-v14-cyrillic-ext-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       url('fonts/montserrat-v14-cyrillic-ext-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('fonts/montserrat-v14-cyrillic-ext-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* montserrat-900 - cyrillic-ext */
 @font-face {
@@ -23,10 +23,11 @@
   font-style: normal;
   font-weight: 900;
   src: local('Montserrat Black'), local('Montserrat-Black'),
-       url('/fonts/montserrat-v14-cyrillic-ext-900.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/fonts/montserrat-v14-cyrillic-ext-900.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       url('fonts/montserrat-v14-cyrillic-ext-900.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('fonts/montserrat-v14-cyrillic-ext-900.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+/*css reset*/
 html 
 {
   box-sizing: border-box;
@@ -35,12 +36,12 @@ html
 *, *::before, *::after 
 {
   box-sizing: inherit;
-  font-family: 'Montserrat Medium';
+  border-width: 0px;
 }
 
 body {
   margin: 0;
-  font-family: 'Montserrat','Segoe UI', 'Helvetica Neue', sans-serif;
+  font-family: 'Montserrat','Segoe UI', 'Helvetica Neue';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -49,3 +50,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+textarea, input, button 
+{
+  outline: none;
+  border: none;
+  font-family: 'Montserrat','Segoe UI', 'Helvetica Neue';
+}
