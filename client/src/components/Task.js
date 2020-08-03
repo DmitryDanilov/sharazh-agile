@@ -1,20 +1,16 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import '../css/Task.css'
-import Leaflet, { ReactComponent } from '../leaflet.svg'
 import SvgComponent from './SvgComponent'
 
 const Task = ({ data }) => {
     const history = useHistory()
     const clickButton = (e) => {
-        console.log(e.target)
         if (e.target.name) {
             history.push(`/detail/${e.target.name}`)
         }
     }
 
-    console.log(data.date)
-    //const date = data.date.getFullYear()
     const colors = ['#478ECC',
         '#6FC6B1',
         '#6666AD',

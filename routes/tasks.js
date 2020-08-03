@@ -4,8 +4,10 @@ const { ensureAuthenticated } = require('../middleware/auth')
 const Task = require('../models/Task')
 
 router.post('/task/createTask', ensureAuthenticated, async (req, res) => {
+    console.log(req.user)
+    const { title, description, executor } = req.body
 
-    const { title, description } = req.body
+    console.log(executor)
     if (title && description) {
         const isTasks = await Task.find()
 
@@ -21,7 +23,9 @@ router.post('/task/createTask', ensureAuthenticated, async (req, res) => {
                 title,
                 description,
                 date: new Date(),
-                status: 0
+                status: 0,
+                author: req.user.login,
+                executor: executor
             })
 
         await task.save()

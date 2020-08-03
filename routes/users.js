@@ -1,4 +1,5 @@
 const express = require('express')
+const { ensureAuthenticated } = require('../middleware/auth')
 const router = express.Router()
 
 const User = require('../models/User')
@@ -30,7 +31,7 @@ router.post('/auth/login', async (req, res) => {
 
     try {
         const { user, error } = await User.authenticate()(req.body.login, req.body.password)
-        
+
         if (error) {
             throw new Error(error)
         }
@@ -55,6 +56,18 @@ router.get('/auth/logout', (req, res) => {
 
 router.get('/auth/checkUser', (req, res) => {
     res.json(req.user)
+})
+
+router.get('/users/getUsers', ensureAuthenticated, async (req, res) => {
+    const users = await User.find()
+
+    if (users) {
+        const userNames = users.map(el => { return el.login })
+
+        return res.json(userNames)
+    }
+
+    res.json({ success: false, message: 'что то нет юзеров' })
 })
 
 module.exports = router
