@@ -48,20 +48,30 @@ router.get('/task/getTask/:number', ensureAuthenticated, async (req, res) => {
 
 router.post('/task/changeStatus', ensureAuthenticated, async (req, res) => {
 
-    const { taskNumber: number } = req.body
+    const { taskNumber: number, newStatus } = req.body
 
     const task = await Task.findOne({ number })
 
     if (task) {
-        const prevStatus = task.status
-
-        if (prevStatus < 3) {
+        if (newStatus) {
             await Task.updateOne(
                 { number },
-                { status: prevStatus + 1 }
+                { status: newStatus }
             )
 
             return res.json({ status: 'success', msg: 'задача обновлена' })
+        }
+        else {
+            const prevStatus = task.status
+
+            if (prevStatus < 3) {
+                await Task.updateOne(
+                    { number },
+                    { status: prevStatus + 1 }
+                )
+
+                return res.json({ status: 'success', msg: 'задача обновлена' })
+            }
         }
     }
     return res.json({ status: 'failed', msg: 'что то не то' })

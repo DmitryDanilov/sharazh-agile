@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import '../css/ColumnDashboard.css'
 import Task from './Task'
 import { DashboardContext } from '../context/DashboardContext'
+import { Draggable } from './dnd/Draggable'
+import { Droppable } from './dnd/Droppable'
 
 export const ColumnDashboard = ({ data, status }) => {
     const { selectedUser } = useContext(DashboardContext)
@@ -14,7 +16,7 @@ export const ColumnDashboard = ({ data, status }) => {
     const nameStatus = status === 0 ? 'Новая' : status === 1 ? 'В работе' : status === 2 ? 'Решено' : 'Архив'
 
     return (
-        <div className='column'>
+        <Droppable id={'dr' + status}>
             <div style={{ textAlign: 'center' }}>
                 <div className='dashboard-column'>
                     {
@@ -24,9 +26,13 @@ export const ColumnDashboard = ({ data, status }) => {
             </div>
             {
                 filteredTaskByStatus && filteredTaskByStatus.map((el, index) => {
-                    return <Task key={index} data={el} />
+                    return (
+                        <Draggable key={index} id={'drag' + el.number}>
+                            <Task key={index} data={el} />
+                        </Draggable>
+                    )
                 })
             }
-        </div >
+        </Droppable>
     )
 }

@@ -3,7 +3,6 @@ import React from 'react'
 export const UsersList = ({ users, selectedUser, changeSelectedUser }) => {
     //const { users, selectedUser, changeSelectedUser } = useContext(DashboardContext)
 
-    console.log('selectedUser', selectedUser)
     //const [selected, setSelected] = useState('')
 
     /*const handleChange = (event) => {

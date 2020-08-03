@@ -42,8 +42,6 @@ const DashboardPage = () => {
 
     const changeSelectedUser = (name) => {
         setSelectedUser(name)
-
-        console.log('name', name)
     }
 
     return (
