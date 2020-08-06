@@ -19,9 +19,16 @@ export const ColumnDashboard = ({ data, status }) => {
         <Droppable id={'dr' + status}>
             <div style={{ textAlign: 'center' }}>
                 <div className='dashboard-column'>
+                    <span className='title-column'>
                     {
-                        nameStatus + ` (${filteredTaskByStatus.length})`
+                        nameStatus
                     }
+                    </span>&nbsp;&nbsp;
+                    <span className='title-column text-colored'>
+                    {
+                        filteredTaskByStatus.length
+                    }
+                    </span>
                 </div>
             </div>
             {

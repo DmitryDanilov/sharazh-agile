@@ -46,18 +46,23 @@ const DashboardPage = () => {
 
     return (
         <DashboardContext.Provider value={{ users, selectedUser, changeSelectedUser }}>
-            <div className='options-menu'>
-                <OptionsMenu />
-            </div>
+            <div className='page-top-area'>
+                <div className='page-main-title'>
+                <span className="main-title-text">Доска</span>&nbsp; <span className="main-title-text text-colored">задач</span>&nbsp;
+                </div>
+                <div className='options-menu'>
+                    <OptionsMenu />
+                </div>
+            </div>    
             <div className='page-dashboard'>
                 <ColumnDashboard data={data} status={0} />
-                <div className='sep'></div>
+                <div className='board-separator'></div>
                 <ColumnDashboard data={data} status={1} />
-                <div className='sep'></div>
+                <div className='board-separator'></div>
                 <ColumnDashboard data={data} status={2} />
-                <div className='sep'></div>
+                <div className='board-separator'></div>
                 <ColumnDashboard data={data} status={3} />
-                <div className='sep'></div>
+                <div className='board-separator'></div>
                 <ToolMenu />
             </div>
         </DashboardContext.Provider>

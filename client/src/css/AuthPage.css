@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-     background-image: url(../images/auth-back-right-flowers.png);
+    background-image: url(../images/auth-back-right-flowers.png);
     background-repeat: no-repeat;
     background-position: right;
 }
@@ -84,11 +84,6 @@ font-size:14px;
     position: fixed;
     bottom: 28px;
     font-size: 14px;
-}
-
-.text-colored 
-{
-    color: #188DE2;
 }
 
 .clear-button button

@@ -50,9 +50,51 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-textarea, input, button 
+textarea, input, button, select 
 {
   outline: none;
   border: none;
   font-family: 'Montserrat','Segoe UI', 'Helvetica Neue';
+}
+
+.text-colored 
+{
+    color: #188DE2;
+}
+
+select, textarea, input
+{
+background: #D0EBFF;
+box-shadow: inset 0px 4px 4px #A4D7FC;
+border-radius: 4px;
+font-size: 14px;
+height: 2em;
+background-image: url(./images/task-leaflet-corner.svg);
+background-repeat: no-repeat;
+background-position: right bottom;
+}
+
+a 
+{
+  font-size: 14px;
+  color: #188DE2;
+  text-decoration: solid;
+}
+
+a:hover 
+{
+  color: #EB6F85;
+  font-weight: 700;
+}
+
+.page-top-area
+{
+    padding: 20px 0px 20px 70px;
+}
+
+.page-main-title 
+{
+    font-size: 32px;
+    font-weight: 900;
+    padding: 0px 0px 20px 0px;
 }
