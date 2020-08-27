@@ -4,11 +4,11 @@ export const Draggable = ({ children, id, style }) => {
     const drag = (e) => {
         e.dataTransfer.setData('transfer', e.target.id)
         
-        console.log('беру')
+        console.log('беру', id)
     }
 
     const noAllowDrop = (e) => {
-        console.log('держу над другой карточкой')
+        console.log('держу в недопустимом месте')
         e.stopPropagation()
     }
 

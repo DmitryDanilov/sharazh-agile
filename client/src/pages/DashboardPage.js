@@ -1,71 +1,27 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import Axios from 'axios'
-import { ColumnDashboard } from '../components/ColumnDashboard'
+import React from 'react'
 import { ToolMenu } from '../components/ToolMenu'
 import { OptionsMenu } from '../components/OptionsMenu'
-import { DashboardContext } from '../context/DashboardContext'
+import { DashboardProvider } from '../context/DashboardContext'
 import '../css/DashboardPage.css'
+import { ColumnsArea } from '../components/ColumnsArea'
 
 const DashboardPage = () => {
 
-    const [data, setData] = useState(null)
-    const [users, setUsers] = useState(null)
-    const [selectedUser, setSelectedUser] = useState('0')
-
-    /*Загрузка списка задач*/
-
-    const loadTasks = useCallback(async () => {
-        const { data } = await Axios.get('/api/task/getTasks', { withCredentials: true })
-
-        setData(data)
-    }, [])
-
-    useEffect(() => {
-        loadTasks()
-    }, [loadTasks])
-
-    /*Загрузка списка зареганных юзеров*/
-
-    const loadUsers = useCallback(async () => {
-        const { data } = await Axios.get('/api/users/getUsers', { withCredentials: true })
-
-        if (data) {
-            setUsers(data)
-            //setSelectedUser(0)
-        }
-    }, [])
-
-    useEffect(() => {
-        loadUsers()
-    }, [loadUsers])
-
-
-    const changeSelectedUser = (name) => {
-        setSelectedUser(name)
-    }
-
     return (
-        <DashboardContext.Provider value={{ users, selectedUser, changeSelectedUser }}>
+        <DashboardProvider>
             <div className='page-top-area'>
                 <div className='page-main-title'>
-                <span className="main-title-text">Доска</span>&nbsp; <span className="main-title-text text-colored">задач</span>&nbsp;
+                    <span className="main-title-text">Доска</span>&nbsp; <span className="main-title-text text-colored">задач</span>&nbsp;
                 </div>
                 <div className='options-menu'>
                     <OptionsMenu />
                 </div>
-            </div>    
+            </div>
             <div className='page-dashboard'>
-                <ColumnDashboard data={data} status={0} />
-                <div className='board-separator'></div>
-                <ColumnDashboard data={data} status={1} />
-                <div className='board-separator'></div>
-                <ColumnDashboard data={data} status={2} />
-                <div className='board-separator'></div>
-                <ColumnDashboard data={data} status={3} />
-                <div className='board-separator'></div>
+                <ColumnsArea />
                 <ToolMenu />
             </div>
-        </DashboardContext.Provider>
+        </DashboardProvider>
     )
 }
 

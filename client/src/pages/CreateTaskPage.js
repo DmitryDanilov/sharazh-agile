@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 import Axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import { UsersList } from '../components/UsersList'
+import RadioButtons from '../components/RadioButtons'
 
 
 const CreateTaskPage = () => {
@@ -9,6 +10,7 @@ const CreateTaskPage = () => {
     const [stasus, setStatus] = useState('non')
     const [users, setUsers] = useState(null)
     const [selectedUser, setSelectedUser] = useState(null)
+    const [priority, setPriority] = useState('3')
 
     /*Загрузка списка зареганных юзеров*/
 
@@ -32,13 +34,17 @@ const CreateTaskPage = () => {
     }
 
     const pressAccess = async () => {
-        const { data } = await Axios.post('/api/task/createTask', { ...taskForm, executor: selectedUser }, { withCredentials: true })
+        const { data } = await Axios.post('/api/task/createTask', { ...taskForm, executor: selectedUser, priority }, { withCredentials: true })
 
         setStatus(data.status)
     }
 
     const changeSelected = (event) => {
         setSelectedUser(event.target.value)
+    }
+
+    const changeHandlerPriority = (e) => {
+        setPriority(e.target.value)
     }
 
     if (stasus === 'success') {
@@ -63,6 +69,7 @@ const CreateTaskPage = () => {
                 onChange={changeHandler}
             ></textarea>
             <UsersList users={users} selectedUser={selectedUser} changeSelectedUser={changeSelected} />
+            <RadioButtons priority={priority} changeHandlerPriority={changeHandlerPriority} />
             <button
                 name='send'
                 onClick={pressAccess}

@@ -14,7 +14,7 @@ const AuthPage = () => {
     }
 
     const registerHandler = async () => {
-        const { data } = await Axios.post('/api/auth/register', { ...authForm })
+        const { data } = await Axios.post('/api/auth/register', authForm)
         console.log('зарегистрирован ', data)
     }
 

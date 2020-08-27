@@ -7,7 +7,8 @@ const Task = new Schema({
     date: { type: Date, required: true },
     status: { type: Number, required: true },
     author: { type: String, required: true },
-    executor: { type: String, required: true }
+    executor: { type: String, required: true },
+    priority: { type: Number, required: true}
 })
 
 module.exports = model('Task', Task)
