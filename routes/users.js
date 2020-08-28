@@ -70,4 +70,20 @@ router.get('/users/getUsers', ensureAuthenticated, async (req, res) => {
     res.json({ success: false, message: 'что то нет юзеров' })
 })
 
+router.post('/users/updateUser', ensureAuthenticated, async (req, res) => {
+    const { name, about } = req.body
+
+    const user = await User.findOne({ login: name })
+
+    if (user) {
+        await User.updateOne(
+            { login: name },
+            { about }
+        )
+
+        return res.json({ status: 'success', msg: 'пользователь обновлен' })
+    }
+    return res.json({ status: 'failed', msg: 'что то не то' })
+})
+
 module.exports = router
