@@ -1,0 +1,58 @@
+.page-input-area
+{
+  width: 85%;
+}
+
+.task-name
+{
+  width: 35%
+}
+
+.task-performer  
+{
+  width: 13%;
+}
+
+.task-area
+{
+  height: 20%;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.input-performer,
+.input-taskname,
+.input-priority-control
+{
+padding: 0px 50px 20px 0px;
+}
+
+.task-performer-list 
+{
+ width: 15%;
+}
+
+.priority-block {
+    width: 125px;
+    height: 25px;
+    display: inline;
+    position: absolute;
+  }
+  .priority-block input[type="radio"] {
+   display:none;
+  }
+  .label-priority {
+    float: right;
+    display: inline;
+    width: 25px;
+    height: 25px;
+    background: url(../images/priority-sprites.svg) no-repeat 50% 0;
+    cursor: pointer;
+  }
+
+  .priority-block .label-priority:hover, 
+  .priority-block .label-priority:hover ~ .label-priority, 
+  .priority-block input[type="radio"]:checked ~ .label-priority 
+  {
+    background-position: 50% -25px;
+  }

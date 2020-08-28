@@ -1,0 +1,8 @@
+.detail-grid-info {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-auto-rows: 2em;
+    grid-gap: .1em;
+    width: 85%;
+    padding: 0px 0px 70px 70px;
+  }

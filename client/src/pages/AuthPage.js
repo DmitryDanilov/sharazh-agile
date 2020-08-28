@@ -59,7 +59,7 @@ const AuthPage = () => {
                     />
                 </div>
                 <div className='auth-input'>
-                 <div className='auth-button'> <button
+                 <div className='auth-button clickable-button'> <button
                         onClick={loginHandler}
                     >Агиле!</button></div>  
                     <div className='auth-button clear-button'><button
