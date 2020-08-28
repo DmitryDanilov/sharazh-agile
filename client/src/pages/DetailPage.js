@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Axios from 'axios'
+import { dateFormatted, prefixZeros } from '../constants.js'
+import '../css/DetailPage.css'
 
 const DetailPage = () => {
     const [task, setTask] = useState(null)
@@ -19,22 +21,32 @@ const DetailPage = () => {
         loadData()
     }
 
+    const tasknum = taskNumber.toString()
+
     useEffect(() => {
         loadData()
     }, [loadData])
 
     return (
-        <div>
-            <div>Номер {task && task.number}</div>
-            <div>Заголовок {task && task.title}</div>
-            <div>Описание {task && task.description}</div>
-            <div>Дата {task && task.date}</div>
-            <div>Автор {task && task.author}</div>
-            <div>Назначена {task && task.executor}</div>
-            <div>Приоритет {task && task.priority}</div>
-            <button
-                onClick={changeStatus}
-            >{task ? (task.status === 0 ? 'взять в работку' : task.status === 1 ? 'сделяль' : task.status === 2 ? 'в архив' : 'уже в архиве, куда') : 'empty'}</button>
+        <div className = 'detail-task-container'>
+            <div className='page-top-area'>
+                <div className='page-main-title'><span className="main-title-text">Задача &nbsp;</span><span className="main-title-text text-colored">{`#${prefixZeros.substring(0,6-tasknum.length)}${tasknum}`}</span></div>
+                <div className='page-sub-title text-gray'>«{task && task.title}»</div>
+            </div>
+            <div className='detail-grid-info'>
+                <div className='text-gray'>Автор</div><div className='text-colored'>{task && task.author}</div>
+                <div className='text-gray'>Приоритет</div><div className='text-colored'>{task ? (task.priority === 1 ? 'Низкий' : task.priority === 2 ? 'Нормальный' : task.priority === 3 ? 'Средний' :  task.priority === 4 ? 'Высокий' : 'Критический'): 'Не установлен'}</div>
+                <div className='text-gray'>Статус</div><div className='text-colored'>{task ? (task.status === 0 ? 'Создана' : task.status === 1 ? 'В работе' : task.status === 2 ? 'Решена' : 'Архивная') : 'empty'}</div>
+                <div className='text-gray'>Дата создания</div><div className='text-colored'>{task && dateFormatted(task.date)}</div>
+                <div className='text-gray'>Описание</div><div>{task && task.description}</div>
+            </div>
+            <div className = 'footer-task-container'>
+            </div>
+            <div className='clickable-button custom-button'>
+                    <button
+                        onClick={changeStatus}
+                    >{task ? (task.status === 0 ? 'В работу' : task.status === 1 ? 'Решена' : task.status === 2 ? 'Закрыть' : 'Дальше некуда') : 'empty'}</button>
+            </div>
         </div>
     )
 }

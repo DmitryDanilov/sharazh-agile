@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import '../css/Task.css'
 import SvgComponent from './SvgComponent'
+import { dateFormatted, prefixZeros } from '../constants.js'
 
 const Task = ({ data }) => {
     const history = useHistory()
@@ -12,25 +13,14 @@ const Task = ({ data }) => {
         }
     }
 
-    const colors = ['#66BFFF',
-        '#5798FB',
-        '#18B5E7',
-        '#A180E9',
-        '#EB6F85']
+    const colors = ['#48B8AC',
+        '#58C7DA',
+        '#70B2E2',
+        '#AC6BAD',
+        '#F16393']
 
-    const rnd = () => {
-        let rand = 0 - 0.5 + Math.random() * (colors.length);
-        return Math.round(rand)
-    }
-
-    const color = data.status === 3 ? '#666667' : colors[data.priority - 1] /*пока рандомно расставляем цвета карточек, планируется красить в зависимости от приоритета*/
+    const color = data.status === 3 ? '#90A4AF' : colors[data.priority - 1] 
     const tasknum = data.number.toString()
-    const prefixZeros = '000000'
-
-    const dateFormatted = () => {
-      let dateParts =  data.date.split('-');
-      return `${dateParts[2].substring(0,2)}.${dateParts[1]}.${dateParts[0]}`
-    }
 
     return (
         <div className='task-container'  name={data.number} onClick={clickButton}>
@@ -47,7 +37,7 @@ const Task = ({ data }) => {
                 <div className='task-number' >{`#${prefixZeros.substring(0,6-tasknum.length)}${tasknum}`}</div>
                 <div className='task-separator'></div>
                 <div className='task-title'>{data.title}</div>
-            <div className='task-date'>{dateFormatted()}</div>
+            <div className='task-date'>{dateFormatted(data.date)}</div>
             </div>
         </div>
     )
