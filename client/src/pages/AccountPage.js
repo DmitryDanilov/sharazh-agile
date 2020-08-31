@@ -21,12 +21,14 @@ const AccountPage = () => {
     }
 
     return (
-        <div>
-            <div>
-                Вы вошли в Шараж.Агиле как <span>{user.login}</span>
+        <div className='account-page-container' >
+            <div className='page-top-area'>
+                <div className='page-main-title'>
+                    <span className="main-title-text">Аккаунт</span>&nbsp; <span className="main-title-text text-colored">{user.login}</span>&nbsp;
+                </div>
             </div>
             <div>
-                Аккаунт Agile
+                Вы вошли в Шараж.Агиле как <span>{user.login}</span>
             </div>
             <div>
                 <div>
